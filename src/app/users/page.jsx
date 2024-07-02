@@ -9,7 +9,7 @@ import { FaUserPen } from "react-icons/fa6";
 import { MdError } from "react-icons/md";
 
 async function fetchUsers() {
-    const response = await fetch('https://2e7c2c4410730017c50b9d.mockapi.io/users');
+    const response = await fetch('https://602e7c2c4410730017c50b9d.mockapi.io/users');
     await new Promise((resolve) => setTimeout(resolve, 500));
     if (!response.ok) {
         throw new Error('Network response was not ok');
