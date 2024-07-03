@@ -7,6 +7,8 @@ import { MdAttachEmail } from "react-icons/md";
 import { LiaUserCheckSolid } from "react-icons/lia";
 import { FaUserPen } from "react-icons/fa6";
 import { MdError } from "react-icons/md";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 async function fetchUsers() {
     const response = await fetch('https://602e7c2c4410730017c50b9d.mockapi.io/users');
@@ -32,8 +34,10 @@ const Users = () => {
                     throw new Error('Data format is incorrect');
                 }
                 setUsers(users);
+                toast.warning('Please click on User to view details!');
             } catch (error) {
                 setHasError(true);
+                toast.error('Fetching users failed.');
                 console.error('Fetching users failed:', error);
             } finally {
                 setIsLoading(false);
@@ -42,7 +46,7 @@ const Users = () => {
         fetchData();
     }, []);
 
-    const toggleUserDetails = (username) => {   //usually we write the toggle function using id, but here there are duplicate ids in this dataset,so I wrote the function using username 
+    const toggleUserDetails = (username) => {   
         setSelectedUsername((prevSelectedUsername) => (prevSelectedUsername === username ? null : username));
     };
 
@@ -56,6 +60,7 @@ const Users = () => {
 
     return (
         <div className="bg-white text-black">
+            <ToastContainer />
             <h1 className="p-5 font-bold">Users</h1>
             <hr />
             <hr />
@@ -77,12 +82,9 @@ const Users = () => {
                                 onError={handleImageError}
                             />
                             <div>
-                                <h1 className="font-bold flex text-sm lg:text-md">
-                                    <FaRegUserCircle className='mr-2 mt-1'/>{user.profile.username}
+                                <h1 className="font-bold flex text-sm lg:text-md mb-2">
+                                    {user.profile.firstName} {user.profile.lastName}
                                 </h1>
-                                <h2 className='text-slate-600 pb-2 flex text-sm lg:text-md'>
-                                    <PiOfficeChairFill className='mr-2 mt-1'/>{user.jobTitle}
-                                </h2>
                             </div>
                         </div>
                         <hr />
@@ -98,8 +100,8 @@ const Users = () => {
                                     />
                                 </div>
                                 <div className="w-2/3 ps-5">
-                                    <h2 className="font-bold">{user.profile.username}</h2>
-                                    <h2 className="text-slate-600">{user.jobTitle}</h2>
+                                    <h2 className="font-bold flex"><FaRegUserCircle className='mr-2 mt-1'/>Username: {user.profile.username}</h2>
+                                    <h2 className="text-slate-600 flex"><PiOfficeChairFill className='mr-2 mt-1'/>{user.jobTitle}</h2>
                                     <p className='flex'><FaUserPen className='mr-2 mt-1'/>Bio: {user.Bio}</p>
                                     <p className='flex'><FaFileSignature className='mr-2 mt-1'/>Name: {user.profile.firstName} {user.profile.lastName}</p>
                                     <p className='flex'><LiaUserCheckSolid className='mr-2 mt-1'/>User ID: {user.id}</p>
@@ -115,3 +117,4 @@ const Users = () => {
 };
 
 export default Users;
+
