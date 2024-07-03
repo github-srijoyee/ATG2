@@ -46,7 +46,7 @@ const Users = () => {
         fetchData();
     }, []);
 
-    const toggleUserDetails = (username) => {   
+    const toggleUserDetails = (username) => {   //toggle function is written usually with id as id is unique, but in this dataset same ids have duplicate records and hence I wrote the function using username
         setSelectedUsername((prevSelectedUsername) => (prevSelectedUsername === username ? null : username));
     };
 
@@ -91,11 +91,11 @@ const Users = () => {
                         <hr />
                         {selectedUsername === user.profile.username && (
                             <div className="block lg:flex mt-2">
-                                <div>
+                                <div className='text-center'>
                                     <img
                                         src={user.avatar}
                                         alt="No data to show"
-                                        className="rounded-full w-20 h-20 ms-7 me-7 mt-7 mb-7 justify-center"
+                                        className="rounded-full w-20 h-20 ms-7 me-7 mt-7 mb-7 justify-center items-center"
                                         onError={handleImageError}
                                     />
                                 </div>
