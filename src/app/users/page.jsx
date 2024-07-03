@@ -77,10 +77,10 @@ const Users = () => {
                                 onError={handleImageError}
                             />
                             <div>
-                                <h1 className="font-bold flex">
+                                <h1 className="font-bold flex text-sm lg:text-md">
                                     <FaRegUserCircle className='mr-2 mt-1'/>{user.profile.username}
                                 </h1>
-                                <h2 className='text-slate-600 pb-2 flex'>
+                                <h2 className='text-slate-600 pb-2 flex text-sm lg:text-md'>
                                     <PiOfficeChairFill className='mr-2 mt-1'/>{user.jobTitle}
                                 </h2>
                             </div>
