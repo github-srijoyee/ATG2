@@ -99,7 +99,7 @@ const Users = () => {
                                         onError={handleImageError}
                                     />
                                 </div>
-                                <div className="w-2/3 ps-5">
+                                <div className=" ps-5 text-sm">
                                     <h2 className="font-bold flex"><FaRegUserCircle className='mr-2 mt-1'/>Username: {user.profile.username}</h2>
                                     <h2 className="text-slate-600 flex"><PiOfficeChairFill className='mr-2 mt-1'/>{user.jobTitle}</h2>
                                     <p className='flex'><FaUserPen className='mr-2 mt-1'/>Bio: {user.Bio}</p>
