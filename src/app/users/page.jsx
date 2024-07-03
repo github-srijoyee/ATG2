@@ -20,7 +20,7 @@ async function fetchUsers() {
 
 const Users = () => {
     const [users, setUsers] = useState([]);
-    const [selectedUserId, setSelectedUserId] = useState(null);
+    const [selectedUsername, setSelectedUsername] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [hasError, setHasError] = useState(false);
 
@@ -42,8 +42,8 @@ const Users = () => {
         fetchData();
     }, []);
 
-    const toggleUserDetails = (id) => {
-        setSelectedUserId(selectedUserId === id ? null : id);
+    const toggleUserDetails = (username) => {   //usually we write the toggle function using id, but here there are duplicate ids in this dataset,so I wrote the function using username 
+        setSelectedUsername((prevSelectedUsername) => (prevSelectedUsername === username ? null : username));
     };
 
     const handleImageError = (event) => {
@@ -68,7 +68,7 @@ const Users = () => {
                     <div key={user.id} className="mb-4">
                         <div 
                             className="flex items-center cursor-pointer ps-7" 
-                            onClick={() => toggleUserDetails(user.id)}
+                            onClick={() => toggleUserDetails(user.profile.username)}
                         >
                             <img 
                                 src={user.avatar} 
@@ -87,7 +87,7 @@ const Users = () => {
                         </div>
                         <hr />
                         <hr />
-                        {selectedUserId === user.id && (
+                        {selectedUsername === user.profile.username && (
                             <div className="block lg:flex mt-2">
                                 <div>
                                     <img
